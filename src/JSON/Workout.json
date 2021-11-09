@@ -1,0 +1,24 @@
+{
+    "Exercises" : [
+        {
+            "Name": "Name",
+            "Description" : "DEsc",
+            "URL" : "URL",
+            "Image": "Img",
+            "MuscleGroup": "Abdomen",
+            "ExerciseType" : "Exer",
+            "Equipment" : "Eq",
+            "Experience": "xp"   
+        },
+        {
+            "Name": "ame",
+            "Description" : "Ec",
+            "URL" : "UR",
+            "Image": "Ig",
+            "MuscleGroup": "Biceps",
+            "ExerciseType" : "er",
+            "Equipment" : "E",
+            "Experience": "p"   
+        }
+    ]
+}
