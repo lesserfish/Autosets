@@ -24,6 +24,26 @@
 
 </script>
 <body class="bg-white">
+
+{#if mode==0}
+	<div class="BackgroundImage imageA">
+		<img src="/images/human_a.png" alt=""  
+		in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"
+		out:fade="{{ x: -1 * animationSpeed, duration: animationDelay}}">
+	</div>
+{:else if mode == 1}
+	<div class="BackgroundImage imageB">
+		<img src="/images/human_b.webp" alt=""
+		in:fly="{{ x:  - 1 * animationSpeed, duration: animationDelay, delay: animationDelay}}"
+		out:fade="{{ x:  animationSpeed, duration: animationDelay}}">
+	</div>
+{:else}	
+	<div class="BackgroundImage imageC">
+		<img src="/images/human_c.webp" alt=""
+		in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"
+		out:fade="{{ x: -1 * animationSpeed, duration: animationDelay}}">
+	</div>
+{/if}
 <Load bind:AppObjects={AppObjects}/>
 
 
@@ -32,7 +52,7 @@
 	<nav class="navbar sticky-top navbar-light">
 		<div class="container NavbarContainer ">
 			<div class="navbar-brand">
-				<h1 class="display-6 text-dark">AUTO <span class="text-primary">SETS</span></h1>
+				<h1 class="display-6 text-dark">AUTO <span class="text-secondary">SETS</span></h1>
 			</div>
 		</div>
 	</nav>
@@ -42,11 +62,11 @@
 <div class="container Main">
 	<div class="row">
 		<div class="col">
-			<button type="button" class="btn btn-outline-primary shadow-sm {mode == 0 ? "disabled" : ""}" on:click={() => { mode = Math.max(mode - 1, 0); animationSpeed = -1 * Math.abs(animationSpeed);} }> Previous Step </button> 
+			<button type="button" class="btn btn-outline-secondary shadow-sm {mode == 0 ? "disabled" : ""}" on:click={() => { mode = Math.max(mode - 1, 0); animationSpeed = -1 * Math.abs(animationSpeed);} }> Previous Step </button> 
 		</div>
 		<div class="col-6"></div>	
 		<div class="col">
-			<button type="button" class="btn btn-outline-primary shadow-sm {mode == 2 ? "disabled" : ""}" on:click={() => { mode = Math.min(mode + 1, 2); animationSpeed = Math.abs(animationSpeed); }}> Next Step</button> 
+			<button type="button" class="btn btn-outline-secondary shadow-sm {mode == 2 ? "disabled" : ""}" on:click={() => { mode = Math.min(mode + 1, 2); animationSpeed = Math.abs(animationSpeed); }}> Next Step</button> 
 		</div>
 	</div>
 	<div class="Component">
@@ -90,6 +110,8 @@
 	body{
 		max-width: 100%;
 		overflow-x: hidden;
+		overflow-y: hidden;
+		z-index: 3;
 	}
 	.Main{
 		text-align: center;
@@ -97,5 +119,27 @@
 	}
 	.NavbarContainer{
 		margin-left:2%
+	}
+	.BackgroundImage{
+		position:absolute;
+		overflow:hidden;
+		z-index: 0;
+		pointer-events: none;
+	}
+	.BackgroundImage > img{
+		height: 100;
+		opacity: 16%;
+	}
+	.imageA{
+		margin-left:50%;
+		display: inline-block;
+		scale: 150%;
+		margin-top: 9%;
+	}
+	.imageB{
+		margin-left:10%;
+	}
+	.imageC{
+		margin-left: 30%;
 	}
 </style>
