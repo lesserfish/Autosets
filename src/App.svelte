@@ -22,6 +22,7 @@
 	let animationDelay = 200;
 	let animationSpeed = 600;
 
+
 </script>
 <body class="bg-white">
 
