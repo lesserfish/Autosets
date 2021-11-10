@@ -12,6 +12,7 @@ musclegroup_output = dict()
 equipment_output = dict()
 mechanics_output = dict()
 experience_output = dict()
+type_output = dict()
 
 for key in og_json.keys():
     entry = og_json[key]
@@ -42,12 +43,15 @@ for key in og_json.keys():
     if not(mechanics in mechanics_output.values()):
         mechanics_output[len(mechanics_output) + 1] = mechanics 
     if not(exp in experience_output.values()):
-        experience_output[len(experience_output) + 1] = exp 
+        experience_output[len(experience_output) + 1] = exp
+    if not(type in type_output.values()):
+        type_output[len(type_output) + 1] = type
 
 print(musclegroup_output, end="\n\n")
 print(equipment_output, end="\n\n")
 print(mechanics_output, end="\n\n")
 print(experience_output, end="\n\n")
+print(type_output, end = "\n\n")
 
 output = dict()
 
@@ -56,7 +60,7 @@ output["MuscleGroups"] = musclegroup_output
 output["Equipment"] = equipment_output
 output["Mechanics"] = mechanics_output
 output["Experience"] = experience_output
-
+output["Types"] = type_output
 
 json_output = json.dumps(output)
 file = open("db.json", "w")
