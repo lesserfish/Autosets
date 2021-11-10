@@ -1,3 +1,7 @@
+#  This goes through all the exercises describes in the muscleandstrength.com website,
+# and get their link, name, target muscle groups, difficulty, exercise type and required equipment.
+
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -22,16 +26,16 @@ url_list = [("https://www.muscleandstrength.com/exercises/abductors.html", "abdu
 			("https://www.muscleandstrength.com/exercises/glutes?page=1", "glutes"),
 			("https://www.muscleandstrength.com/exercises/hamstrings", "hamstrings"),
 			("https://www.muscleandstrength.com/exercises/hamstrings?page=1", "hamstrings"),
-#			("https://www.muscleandstrength.com/exercises/hip-flexors", "hip flexor"),
-#			("https://www.muscleandstrength.com/exercises/it-band", "it band"),
+#			("https://www.muscleandstrength.com/exercises/hip-flexors", "hip flexor"),  # not working
+#			("https://www.muscleandstrength.com/exercises/it-band", "it band"),   # not working
 			("https://www.muscleandstrength.com/exercises/lats", "lats"),
 			("https://www.muscleandstrength.com/exercises/lower-back", "lower back"),
 			("https://www.muscleandstrength.com/exercises/middle-back", "upper back"),
 			("https://www.muscleandstrength.com/exercises/middle-back?page=1", "upper back"),
 			("https://www.muscleandstrength.com/exercises/neck.html", "neck"),
-#			("https://www.muscleandstrength.com/exercises/obliques", "obliques"),
-#			("https://www.muscleandstrength.com/exercises/palmar-fascia", "palmar fascia"),
-#			("https://www.muscleandstrength.com/exercises/plantar-fascia", "plantar fascia"),
+#			("https://www.muscleandstrength.com/exercises/obliques", "obliques"),    # not working
+#			("https://www.muscleandstrength.com/exercises/palmar-fascia", "palmar fascia"),   # not working
+#			("https://www.muscleandstrength.com/exercises/plantar-fascia", "plantar fascia"),   # not owrking
 			("https://www.muscleandstrength.com/exercises/quads", "quads"),
 			("https://www.muscleandstrength.com/exercises/quads?page=1", "quads"),
 			("https://www.muscleandstrength.com/exercises/quads?page=2", "quads"),
@@ -52,6 +56,7 @@ class_name = "bp600-6"
 link_node = "node-image"
 info_node = "exercise-meta"
 info_ind = "cell"
+meta = "meta-box"
 driver = webdriver.Firefox()
 
 
@@ -91,8 +96,8 @@ for url_tuple in url_list:
 		exercise_output = element.find_element_by_class_name(info_node)
 		info_elements = exercise_output.find_elements_by_class_name(info_ind)
 		for ie in info_elements:
-			label = ie.find_element_by_class_name("meta-box").find_element_by_tag_name('label').get_attribute("innerHTML")
-			value = ie.find_element_by_class_name("meta-box").get_attribute("innerText")
+			label = ie.find_element_by_class_name(meta).find_element_by_tag_name('label').get_attribute("innerHTML")
+			value = ie.find_element_by_class_name(meta).get_attribute("innerText")
 			info_dict[label] = value
 		
 		print(link)

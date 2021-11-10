@@ -4,7 +4,7 @@
 	import Template from "./Components/Template.svelte"
 	import Output from "./Components/Output.svelte"
 	import Load from "./Components/Load.svelte"
-	import { fly } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 
 	// File loads
 	let AppObjects = {
@@ -30,7 +30,7 @@
 <div class ="container-fluid shadow">
 	<div class="row">
 	<nav class="navbar sticky-top navbar-light">
-		<div class="container Navbar">
+		<div class="container NavbarContainer ">
 			<a class="navbar-brand" href="#">
 				<h1 class="display-6 text-dark">Autosets </h1>
 			</a>
@@ -82,7 +82,10 @@
 		text-align: center;
 		padding: 2%;
 	}
-	.Navbar{
+	.Navnar{
+		background-color: tomato;
+	}
+	.NavbarContainer{
 		margin-left:2%
 	}
 </style>
