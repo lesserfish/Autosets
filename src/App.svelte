@@ -19,8 +19,8 @@
 	let mode = 0;
 	let value = 0;
 
-	let animationDelay = 200
-	let animationSpeed = 600
+	let animationDelay = 200;
+	let animationSpeed = 600;
 
 </script>
 <body class="bg-white">
@@ -42,11 +42,11 @@
 <div class="container Main">
 	<div class="row">
 		<div class="col">
-			<button type="button" class="btn btn-light" on:click={() => { mode = Math.max(mode - 1, 0); animationSpeed = -1 * Math.abs(animationSpeed);} }> Previous Step </button> 
+			<button type="button" class="btn btn-light shadow-sm {mode == 0 ? "disabled" : ""}" on:click={() => { mode = Math.max(mode - 1, 0); animationSpeed = -1 * Math.abs(animationSpeed);} }> Previous Step </button> 
 		</div>
 		<div class="col-6"></div>	
 		<div class="col">
-			<button type="button" class="btn btn-light" on:click={() => { mode = Math.min(mode + 1, 2); animationSpeed = Math.abs(animationSpeed); }}> Next Step</button> 
+			<button type="button" class="btn btn-light shadow-sm {mode == 2 ? "disabled" : ""}" on:click={() => { mode = Math.min(mode + 1, 2); animationSpeed = Math.abs(animationSpeed); }}> Next Step</button> 
 		</div>
 	</div>
 	<div class="Component">
