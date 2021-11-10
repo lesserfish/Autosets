@@ -31,9 +31,9 @@
 	<div class="row">
 	<nav class="navbar sticky-top navbar-light">
 		<div class="container NavbarContainer ">
-			<a class="navbar-brand" href="#">
-				<h1 class="display-6 text-dark">Autosets </h1>
-			</a>
+			<div class="navbar-brand">
+				<h1 class="display-6 text-dark">AUTO <span class="text-primary">SETS</span></h1>
+			</div>
 		</div>
 	</nav>
 	</div>
@@ -42,11 +42,11 @@
 <div class="container Main">
 	<div class="row">
 		<div class="col">
-			<button type="button" class="btn btn-light shadow-sm {mode == 0 ? "disabled" : ""}" on:click={() => { mode = Math.max(mode - 1, 0); animationSpeed = -1 * Math.abs(animationSpeed);} }> Previous Step </button> 
+			<button type="button" class="btn btn-outline-primary shadow-sm {mode == 0 ? "disabled" : ""}" on:click={() => { mode = Math.max(mode - 1, 0); animationSpeed = -1 * Math.abs(animationSpeed);} }> Previous Step </button> 
 		</div>
 		<div class="col-6"></div>	
 		<div class="col">
-			<button type="button" class="btn btn-light shadow-sm {mode == 2 ? "disabled" : ""}" on:click={() => { mode = Math.min(mode + 1, 2); animationSpeed = Math.abs(animationSpeed); }}> Next Step</button> 
+			<button type="button" class="btn btn-outline-primary shadow-sm {mode == 2 ? "disabled" : ""}" on:click={() => { mode = Math.min(mode + 1, 2); animationSpeed = Math.abs(animationSpeed); }}> Next Step</button> 
 		</div>
 	</div>
 	<div class="Component">
@@ -70,7 +70,20 @@
 	{/if}	
 	</div>
 
-	<div class="Footer"></div>
+		<nav class="navbar fixed-bottom navbar-light">
+			<div class="col-12">
+				<div class="navbar-text text-center">
+					{#if mode==0}
+					
+					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Hello there!</h5></div>
+					{:else if mode == 1}
+					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Woah!</h5></div>
+					{:else}
+					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Good god...</h5></div>
+					{/if}
+				</div>
+			</div>
+		</nav>
 </div>
 </body>
 <style>
@@ -81,9 +94,6 @@
 	.Main{
 		text-align: center;
 		padding: 2%;
-	}
-	.Navnar{
-		background-color: tomato;
 	}
 	.NavbarContainer{
 		margin-left:2%
