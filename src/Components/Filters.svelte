@@ -1,4 +1,7 @@
 <script>
+import { onMount } from "svelte";
+
+
     export let AppObjects;
     let ChosenMuscles = [];
     let ChosenEquipment = [];
@@ -49,6 +52,44 @@
             }
         }
     }
+
+    function FillEmpty()
+    {
+
+            if(ChosenMuscles.length == 0){
+                for(let i = 0; i < Object.values(AppObjects.muscleGroupArray).length; i++)
+                {
+                    ChosenMuscles.push(Object.values(AppObjects.muscleGroupArray)[i]);
+                }
+            }
+            if(ChosenEquipment.length == 0){
+                for(let i = 0; i <  Object.values(AppObjects.equipmentArray).length; i++)
+                {
+                    ChosenEquipment.push(Object.values(AppObjects.equipmentArray)[i]);
+                }
+            }
+            if(ChosenDifficulty.length == 0){
+                for(let i = 0; i <  Object.values(AppObjects.experienceArray).length; i++)
+                {
+                    ChosenDifficulty.push(Object.values(AppObjects.experienceArray)[i]);
+                }
+            }
+            if(ChosenTypes.length == 0)
+            {
+                for(let i = 0; i < Object.values(AppObjects.exerciseTypeArray).length; i++)
+                {
+                    ChosenTypes.push(Object.values(AppObjects.exerciseTypeArray)[i]);
+                }
+            }
+            ChosenMuscles = ChosenMuscles;
+            ChosenEquipment = ChosenEquipment;
+            ChosenDifficulty = ChosenDifficulty;
+            ChosenTypes = ChosenTypes;
+    }
+
+    onMount(() => {
+        FillEmpty();
+    });
 </script>
 
 <div class="modal fade" id="FilterModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -75,7 +116,7 @@
                         <div class="accordion-body">
                             
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="allMuscles" on:change={() => {checkAll("allMuscles", Object.values(AppObjects.muscleGroupArray));}}>
+                                <input class="form-check-input" type="checkbox" id="allMuscles" on:change={() => {checkAll("allMuscles", Object.values(AppObjects.muscleGroupArray));}} checked>
                                 <label class="form-check-label" for="muscle-group-1"> All </label>
                             </div>
                             {#each Object.values(AppObjects.muscleGroupArray) as muscleGroup, i}
@@ -100,7 +141,7 @@
                         <div class="accordion-body">
                             
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="allEquipment" on:change={() => {checkAll("allEquipment", Object.values(AppObjects.equipmentArray));}}>
+                                <input class="form-check-input" type="checkbox" id="allEquipment" on:change={() => {checkAll("allEquipment", Object.values(AppObjects.equipmentArray));}} checked>
                                 <label class="form-check-label" for="muscle-group-1"> All </label>
                             </div>
                             {#each Object.values(AppObjects.equipmentArray) as equipment, i}
@@ -124,7 +165,7 @@
                         <div class="accordion-body">
                             
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="allDifficulty" on:change={() => {checkAll("allDifficulty", Object.values(AppObjects.experienceArray));}}>
+                                <input class="form-check-input" type="checkbox" id="allDifficulty" on:change={() => {checkAll("allDifficulty", Object.values(AppObjects.experienceArray));}} checked>
                                 <label class="form-check-label" for="muscle-group-1"> All </label>
                             </div>
                             {#each Object.values(AppObjects.experienceArray) as difficulty, i}
@@ -148,7 +189,7 @@
                         <div class="accordion-body">
                             
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="allTypes" on:change={() => {checkAll("allTypes", Object.values(AppObjects.exerciseTypeArray));}}>
+                                <input class="form-check-input" type="checkbox" id="allTypes" on:change={() => {checkAll("allTypes", Object.values(AppObjects.exerciseTypeArray));}} checked>
                                 <label class="form-check-label" for="muscle-group-1"> All </label>
                             </div>
                             {#each Object.values(AppObjects.exerciseTypeArray) as etype, i}

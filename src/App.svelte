@@ -25,13 +25,10 @@
         };
     };
 
-    let a = new ExerciseEntry(["Abdomen, Upper Back, Lower Back, Pelvis"], ["Strength, Stretching"], ["Dumbbell, Bodyweight, Rope"], ["Beginner, Intermediate, Advanced"]);
-    let b = new ExerciseEntry(["Upper Back, Lower Back, Pelvis, Buttocks"], ["Strength, Stretching, Powerlifting"], ["Dumbbell, Bodyweight"], ["Intermediate, Advanced"]);
-    let TemplateList = [a, b];
-	
+    let TemplateList = [];
+	let ExerciseList = []	
 	// Local variables
 	let mode = 0;
-	let value = 0;
 
 	let animationDelay = 200;
 	let animationSpeed = 600;
@@ -100,7 +97,7 @@
 		{:else}
 			<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}" out:fly="{{ x: -1 * animationSpeed, duration: animationDelay}}"> 
 				<p> Test</p>
-				<Output bind:value={value}/>
+				<Output bind:AppObjects={AppObjects} bind:TemplateList={TemplateList} bind:ExerciseList={ExerciseList}/>
 			</div>
 
 	{/if}	
