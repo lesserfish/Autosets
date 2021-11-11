@@ -76,7 +76,7 @@
 				<h1 class="display-6 text-dark">AUTO <span class="text-secondary">SETS</span></h1>
 			</div>
 		</div>
-		<div class="form-inline my-2 my-sm-0">
+		<div class="col-1">
 			<button type="button" class="btn btn-outline-secondary shadow-sm" on:click={() => {mode = (mode < 3) ? 3 : 0;}}> {mode < 3 ? "Load" : "Go Back"}  </button>
 		</div>
 	</nav>
@@ -85,11 +85,11 @@
 
 <div class="container Main">
 	<div class="row">
-		<div class="col">
+		<div class="col-3">
 			<button type="button" class="btn btn-outline-secondary shadow-sm {mode == 0 ? "disabled" : ""} {mode == 3 ? "invisible" : ""}" on:click={() => { mode = Math.max(mode - 1, 0); animationSpeed = -1 * Math.abs(animationSpeed);} }> Previous Step </button> 
 		</div>
 		<div class="col-6"></div>	
-		<div class="col">
+		<div class="col-3">
 			<button type="button" class="btn btn-outline-secondary shadow-sm {mode == 2 ? "disabled" : ""} {mode == 3 ? "invisible" : ""}" on:click={() => { mode = Math.min(mode + 1, 2); animationSpeed = Math.abs(animationSpeed); }}> Next Step</button> 
 		</div>
 	</div>
@@ -114,6 +114,7 @@
 	{/if}	
 	</div>
 
+	<div class="specialFooter">
 		<nav class="navbar fixed-bottom navbar-light">
 			<div class="col-12">
 				<div class="navbar-text text-center">
@@ -130,6 +131,7 @@
 				</div>
 			</div>
 		</nav>
+	</div>
 </div>
 </body>
 <style>
@@ -173,6 +175,9 @@
 		scale:27%;
 		left: -60%;
 		top:-245%;
+	}
+	.specialFooter{
+		pointer-events: none;
 	}
 
 </style>

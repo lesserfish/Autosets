@@ -116,7 +116,7 @@ import ExerciseItem from "./ExerciseItem.svelte"
                 </li>
             {/each}
             <li class ="list-group-item bg-transparent liSpecial">
-                <button class="btn btn-outline-secondary col-1 text-primary" on:click={SaveToCookie}>Save</button>
+                <button class="btn btn-outline-secondary col text-primary" on:click={SaveToCookie}>Save</button>
             </li>
         </ul>
     </div>
@@ -141,6 +141,6 @@ import ExerciseItem from "./ExerciseItem.svelte"
     }
     .scrollSpecial{
         overflow-y: auto;
-        max-height: 75vh;
+        max-height: 65vh;
     }
 </style>
