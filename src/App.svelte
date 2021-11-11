@@ -42,11 +42,11 @@
         src="/images/human_a.png"
         alt=""
         in:fly={{
-          x: animationSpeed,
+          x: -1 * animationSpeed,
           duration: animationDelay,
           delay: animationDelay,
         }}
-        out:fade={{ x: -1 * animationSpeed, duration: animationDelay }}
+        out:fade={{ x: animationSpeed, duration: animationDelay }}
       />
     </div>
   {:else if mode == 1}
@@ -277,8 +277,10 @@
     opacity: 16%;
   }
   .imageA {
+    float:right !important;
+    clear: right !important;
+    left:0%;
     margin-left: 5em;
-    left: 50%;
     scale: 150%;
     margin-top: 12em;
   }
