@@ -1,24 +1,38 @@
 {
     "Exercises" : [
         {
-            "Name": "Name",
-            "Description" : "DEsc",
-            "URL" : "URL",
-            "Image": "Img",
-            "MuscleGroup": "Abdomen",
-            "ExerciseType" : "Exer",
-            "Equipment" : "Eq",
-            "Experience": "xp"   
+            "id" : 1,
+            "Name": "Dumbbell Lateral Raise",
+            "Description" : "",
+            "URL" : "https://www.muscleandstrength.com/exercises/dumbbell-lateral-raise.html",
+            "Image": "",
+            "MuscleGroup": "Shoulders",
+            "ExerciseType" : "Strength",
+            "Equipment" : "Dumbbell",
+            "Experience": "Beginner"   
         },
         {
-            "Name": "ame",
-            "Description" : "Ec",
-            "URL" : "UR",
-            "Image": "Ig",
-            "MuscleGroup": "Biceps",
-            "ExerciseType" : "er",
-            "Equipment" : "E",
-            "Experience": "p"   
+            "id" : 2,
+            "Name": "Dummbbell Rear Lunge",
+            "Description" : "",
+            "URL" : "https://www.muscleandstrength.com/exercises/dumbbell-rear-lunge.html",
+            "Image": "",
+            "MuscleGroup": "Quads",
+            "ExerciseType" : "Strength",
+            "Equipment" : "Dumbbell",
+            "Experience": "Intermediate"   
+        },
+        {
+            "id": 3,
+            "Name": "Tripod Dumbbell Row",
+            "Description" : "",
+            "URL" : "https://www.muscleandstrength.com/exercises/tripod-dumbbell-row",
+            "Image": "",
+            "MuscleGroup": "Upper Back",
+            "ExerciseType" : "Strength",
+            "Equipment" : "Dumbbell",
+            "Experience": "Beginner"
         }
+        
     ]
 }
