@@ -15,6 +15,20 @@
 		experienceArray : [],
 	};
 
+    class ExerciseEntry{
+        constructor(MuscleGroups, ExerciseTypes, Equipments, Experience)
+        {
+            this.MuscleGroups = MuscleGroups;
+            this.ExerciseTypes = ExerciseTypes;
+            this.Equipments = Equipments;
+            this.Experience = Experience;
+        };
+    };
+
+    let a = new ExerciseEntry(["Abdomen, Upper Back, Lower Back, Pelvis"], ["Strength, Stretching"], ["Dumbbell, Bodyweight, Rope"], ["Beginner, Intermediate, Advanced"]);
+    let b = new ExerciseEntry(["Upper Back, Lower Back, Pelvis, Buttocks"], ["Strength, Stretching, Powerlifting"], ["Dumbbell, Bodyweight"], ["Intermediate, Advanced"]);
+    let TemplateList = [a, b];
+	
 	// Local variables
 	let mode = 0;
 	let value = 0;
@@ -45,6 +59,8 @@
 		out:fade="{{ x: -1 * animationSpeed, duration: animationDelay}}">
 	</div>
 {/if}
+
+
 <Load bind:AppObjects={AppObjects}/>
 
 
@@ -79,8 +95,7 @@
 			
 		{:else if mode == 1}
 			<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}" out:fly="{{ x: -1 * animationSpeed, duration: animationDelay}}"> 
-				<p>This is a</p>
-				<Template bind:value={value}/>			
+				<Template bind:AppObjects={AppObjects} bind:TemplateList={TemplateList}/>			
 			</div>
 		{:else}
 			<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}" out:fly="{{ x: -1 * animationSpeed, duration: animationDelay}}"> 
