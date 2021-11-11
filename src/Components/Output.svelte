@@ -8,6 +8,7 @@ import ExerciseItem from "./ExerciseItem.svelte"
     
     let ExerciseIndexList = [];
 
+    let save_message = "";
     let finished = false;
 
     class ExerciseEntry{
@@ -70,6 +71,12 @@ import ExerciseItem from "./ExerciseItem.svelte"
     });
         function SaveToCookie()
         {
+            if(ExerciseIndexList.length == 0){
+                save_message = "There is nothing to save."
+                let myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                myModal.toggle();
+                return;
+            }
             let i = 0;
             while(true)
             {
@@ -87,10 +94,14 @@ import ExerciseItem from "./ExerciseItem.svelte"
 
                     let cookie = cookie_name+"="+cookie_value + "; SameSite=Lax";
                     document.cookie = cookie;
+                    save_message = "Workout was saved to cookies."
+                    let myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+                    myModal.toggle();
                     return;
                 }
                 i = i + 1;
             }
+
         }
 </script>
 
@@ -105,13 +116,24 @@ import ExerciseItem from "./ExerciseItem.svelte"
                 </li>
             {/each}
             <li class ="list-group-item bg-transparent liSpecial">
-                <button class="btn btn-outline-secondary col-1 text-primary" on:click={SaveToCookie}>Save</button>
+                <button class="btn btn-outline-secondary col text-primary" on:click={SaveToCookie}>Save</button>
             </li>
         </ul>
     </div>
 </div>
 
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>{save_message}.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
     .liSpecial{
@@ -119,6 +141,6 @@ import ExerciseItem from "./ExerciseItem.svelte"
     }
     .scrollSpecial{
         overflow-y: auto;
-        max-height: 75vh;
+        max-height: 65vh;
     }
 </style>

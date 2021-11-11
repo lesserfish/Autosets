@@ -45,7 +45,7 @@
                 </li>
             {/each}
             <li class ="list-group-item bg-transparent liSpecial">
-                <button class="btn btn-outline-secondary col-1 text-primary" data-bs-toggle="modal" data-bs-target="#FilterModal">Add</button>
+                <button class="btn btn-outline-secondary col text-primary" data-bs-toggle="modal" data-bs-target="#FilterModal">Add</button>
             </li>
         </ul>
     </div>
@@ -59,6 +59,6 @@
     }
     .scrollSpecial{
         overflow-y: auto;
-        max-height: 75vh;
+        max-height: 65vh;
     }
 </style>
