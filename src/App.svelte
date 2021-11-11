@@ -40,25 +40,25 @@
 
 {#if mode==0}
 	<div class="BackgroundImage imageA">
-		<img src="/images/human_a.png" alt=""  
+		<img class="" src="/images/human_a.png" alt=""  
 		in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"
 		out:fade="{{ x: -1 * animationSpeed, duration: animationDelay}}">
 	</div>
 {:else if mode == 1}
 	<div class="BackgroundImage imageB">
-		<img src="/images/human_b.webp" alt=""
+		<img class="img-fluid float-start" src="/images/human_b.webp" alt=""
 		in:fly="{{ x:  - 1 * animationSpeed, duration: animationDelay, delay: animationDelay}}"
 		out:fade="{{ x:  animationSpeed, duration: animationDelay}}">
 	</div>
 {:else if mode == 2}	
 	<div class="BackgroundImage imageC">
-		<img src="/images/human_c.webp" alt=""
+		<img class="img-fluid" src="/images/human_c.webp" alt=""
 		in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"
 		out:fade="{{ x: -1 * animationSpeed, duration: animationDelay}}">
 	</div>
 {:else}
 		<div class="BackgroundImage imageD">
-		<img src="/images/human_f.jpg" alt=""
+		<img class="img-fluid" src="/images/human_h.webp" alt=""
 		in:fly="{{ x: -1*animationSpeed, duration: animationDelay, delay: animationDelay}}"
 		out:fade="{{ x: animationSpeed, duration: animationDelay}}">
 	</div>
@@ -70,13 +70,13 @@
 
 <div class ="container-fluid shadow">
 	<div class="row">
-	<nav class="navbar sticky-top navbar-light">
+	<nav class="navbar sticky-top navbar-light navbar-expand">
 		<div class="container NavbarContainer ">
 			<div class="navbar-brand">
 				<h1 class="display-6 text-dark">AUTO <span class="text-secondary">SETS</span></h1>
 			</div>
 		</div>
-		<div class="col-1">
+		<div class="col">
 			<button type="button" class="btn btn-outline-secondary shadow-sm" on:click={() => {mode = (mode < 3) ? 3 : 0;}}> {mode < 3 ? "Load" : "Go Back"}  </button>
 		</div>
 	</nav>
@@ -159,22 +159,22 @@
 		opacity: 16%;
 	}
 	.imageA{
-		margin-left:50%;
-		display: inline-block;
+		margin-left:5em;
+		left: 50%;
 		scale: 150%;
-		margin-top: 9%;
+		margin-top:12em;
 	}
 	.imageB{
-		margin-left:10%;
+		left:10%;
+		margin-left:2em;
+		margin-top: 1em;
 	}
 	.imageC{
 		margin-left: 30%;
 	}
 	.imageD{
-		display:inline-block;
-		scale:27%;
-		left: -60%;
-		top:-245%;
+		left: 10%;
+		margin-bottom: 15%;
 	}
 	.specialFooter{
 		pointer-events: none;
