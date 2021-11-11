@@ -5,6 +5,7 @@ import { onMount } from "svelte";
     export let id;
     export let content;
     export let close_function;
+    export let repeat_function;
 
     let MuscleGroups = "";
     let MuscleGroupsShort = "";
@@ -36,15 +37,15 @@ import { onMount } from "svelte";
   <a class="btn btn-outline-secondary col-8 text-left textSpecial" data-bs-toggle="collapse" href="#collapseLink{id}" role="button" aria-expanded="false" aria-controls="collapseExample">
     {GetTextShort(content.MuscleGroups)}
   </a>
-  <button class="btn btn-close col-2" type="button" on:click={close_function(id)}></button>
-
+  <button class="btn bi-arrow-repeat col" type="button" style="font-size:130%" on:click={repeat_function(id)}></button>
+  <button class="btn btn-close col-1" type="button" on:click={close_function(id)}></button>
 
 <div class="collapse" id="collapseLink{id}">
   <div class="card card-body bg-transparent cardSpecial">
-    <p> Muscle groups: {GetText(content.MuscleGroups)}</p>
-    <p> Equipment: {GetText(content.Equipments)}</p>
-    <p> Difficulty: {GetText(content.Experience)}</p>
-    <p> Exercise Type: {GetText(content.ExerciseTypes)}</p>
+    <b> Muscle groups:</b> <p>{GetText(content.MuscleGroups)}</p>
+    <b> Equipment:</b> <p>{GetText(content.Equipments)}</p>
+    <b> Difficulty:</b> <p>{GetText(content.Experience)}</p>
+    <b> Exercise Type:</b> <p>{GetText(content.ExerciseTypes)}</p>
   </div>
 </div>
 

@@ -95,7 +95,7 @@
 			
 		{:else if mode == 1}
 			<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}" out:fly="{{ x: -1 * animationSpeed, duration: animationDelay}}"> 
-				<Template bind:AppObjects={AppObjects} bind:TemplateList={TemplateList}/>			
+				<Template bind:AppObjects={AppObjects} bind:TemplateList={TemplateList} />			
 			</div>
 		{:else}
 			<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}" out:fly="{{ x: -1 * animationSpeed, duration: animationDelay}}"> 
