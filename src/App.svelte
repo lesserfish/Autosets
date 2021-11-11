@@ -277,10 +277,7 @@
     opacity: 16%;
   }
   .imageA {
-    float:right !important;
-    clear: right !important;
-    left:0%;
-    margin-left: 5em;
+    left:19%;
     scale: 150%;
     margin-top: 12em;
   }
