@@ -80,6 +80,7 @@
 
     document.cookie = "workout_" + i + "=; Max-Age=0; SameSite=Lax;";
     saved_cookies = saved_cookies;
+    cookie_mode = -1;
   }
   function LoadExerciseList(i) {
     ExerciseIndexList = [];
