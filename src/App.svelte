@@ -4,6 +4,7 @@
 	import Template from "./Components/Template.svelte"
 	import Output from "./Components/Output.svelte"
 	import Load from "./Components/Load.svelte"
+	import Cookies from "./Components/Cookies.svelte"
 	import { fade, fly } from 'svelte/transition';
 
 	// File loads
@@ -49,11 +50,17 @@
 		in:fly="{{ x:  - 1 * animationSpeed, duration: animationDelay, delay: animationDelay}}"
 		out:fade="{{ x:  animationSpeed, duration: animationDelay}}">
 	</div>
-{:else}	
+{:else if mode == 2}	
 	<div class="BackgroundImage imageC">
 		<img src="/images/human_c.webp" alt=""
 		in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"
 		out:fade="{{ x: -1 * animationSpeed, duration: animationDelay}}">
+	</div>
+{:else}
+		<div class="BackgroundImage imageD">
+		<img src="/images/human_f.jpg" alt=""
+		in:fly="{{ x: -1*animationSpeed, duration: animationDelay, delay: animationDelay}}"
+		out:fade="{{ x: animationSpeed, duration: animationDelay}}">
 	</div>
 {/if}
 
@@ -69,6 +76,9 @@
 				<h1 class="display-6 text-dark">AUTO <span class="text-secondary">SETS</span></h1>
 			</div>
 		</div>
+		<div class="form-inline my-2 my-sm-0">
+			<button type="button" class="btn btn-outline-secondary shadow-sm" on:click={() => {mode = (mode < 3) ? 3 : 0;}}> {mode < 3 ? "Load" : "Go Back"}  </button>
+		</div>
 	</nav>
 	</div>
 </div>
@@ -76,30 +86,31 @@
 <div class="container Main">
 	<div class="row">
 		<div class="col">
-			<button type="button" class="btn btn-outline-secondary shadow-sm {mode == 0 ? "disabled" : ""}" on:click={() => { mode = Math.max(mode - 1, 0); animationSpeed = -1 * Math.abs(animationSpeed);} }> Previous Step </button> 
+			<button type="button" class="btn btn-outline-secondary shadow-sm {mode == 0 ? "disabled" : ""} {mode == 3 ? "invisible" : ""}" on:click={() => { mode = Math.max(mode - 1, 0); animationSpeed = -1 * Math.abs(animationSpeed);} }> Previous Step </button> 
 		</div>
 		<div class="col-6"></div>	
 		<div class="col">
-			<button type="button" class="btn btn-outline-secondary shadow-sm {mode == 2 ? "disabled" : ""}" on:click={() => { mode = Math.min(mode + 1, 2); animationSpeed = Math.abs(animationSpeed); }}> Next Step</button> 
+			<button type="button" class="btn btn-outline-secondary shadow-sm {mode == 2 ? "disabled" : ""} {mode == 3 ? "invisible" : ""}" on:click={() => { mode = Math.min(mode + 1, 2); animationSpeed = Math.abs(animationSpeed); }}> Next Step</button> 
 		</div>
 	</div>
 	<div class="Component">
 		{#if mode == 0}
 			<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}" out:fly="{{ x: -1 * animationSpeed, duration: animationDelay}}"> 
-				<p>Hello</p>
-				<Introduction />-->
+				<Introduction />
 			</div>
 			
 		{:else if mode == 1}
 			<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}" out:fly="{{ x: -1 * animationSpeed, duration: animationDelay}}"> 
 				<Template bind:AppObjects={AppObjects} bind:TemplateList={TemplateList} />			
 			</div>
-		{:else}
+		{:else if mode == 2}
 			<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}" out:fly="{{ x: -1 * animationSpeed, duration: animationDelay}}"> 
-				<p> Test</p>
 				<Output bind:AppObjects={AppObjects} bind:TemplateList={TemplateList} bind:ExerciseList={ExerciseList}/>
 			</div>
-
+			{:else}
+			<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}" out:fly="{{ x: -1 * animationSpeed, duration: animationDelay}}"> 
+				<Cookies bind:AppObjects={AppObjects}/>
+			</div>
 	{/if}	
 	</div>
 
@@ -108,11 +119,13 @@
 				<div class="navbar-text text-center">
 					{#if mode==0}
 					
-					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Hello there!</h5></div>
+					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Welcome!</h5></div>
 					{:else if mode == 1}
-					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Woah!</h5></div>
+					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Select your workout!!</h5></div>
+					{:else if mode == 2}
+					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Now do your best!</h5></div>
 					{:else}
-					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Good god...</h5></div>
+					<div in:fly="{{ x: animationSpeed, duration: animationDelay, delay: animationDelay}}"><h5>Load your favourite workouts!</h5></div>
 					{/if}
 				</div>
 			</div>
@@ -155,4 +168,11 @@
 	.imageC{
 		margin-left: 30%;
 	}
+	.imageD{
+		display:inline-block;
+		scale:27%;
+		left: -60%;
+		top:-245%;
+	}
+
 </style>

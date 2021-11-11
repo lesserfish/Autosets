@@ -6,6 +6,8 @@ import ExerciseItem from "./ExerciseItem.svelte"
     export let TemplateList;
     export let ExerciseList;
     
+    let ExerciseIndexList = [];
+
     let finished = false;
 
     class ExerciseEntry{
@@ -23,6 +25,7 @@ import ExerciseItem from "./ExerciseItem.svelte"
         for(let i = 0; i < TemplateList.length; i++)
         {
             let AcceptableWorkouts = [];
+            let AcceptableWorkoutsIndex = [];
             let template = TemplateList[i];
             
             for(let j = 1; j <= Object.values(AppObjects.workoutObject).length; j++)
@@ -47,14 +50,17 @@ import ExerciseItem from "./ExerciseItem.svelte"
                     continue;
                 } 
                 AcceptableWorkouts.push(workout);
+                AcceptableWorkoutsIndex.push(j);
             }
             if(AcceptableWorkouts.length > 0)
             {
                 let idx = Math.floor(Math.random()* AcceptableWorkouts.length);
                 let exercise = AcceptableWorkouts[idx];
                 ExerciseList.push(exercise)
+                ExerciseIndexList.push(AcceptableWorkoutsIndex[idx]);
             }
         }
+
         finished = true;
     }
 
@@ -62,19 +68,57 @@ import ExerciseItem from "./ExerciseItem.svelte"
         ExerciseList = []
         FillExerciseList();
     });
+        function SaveToCookie()
+        {
+            let i = 0;
+            while(true)
+            {
+                let cookie_name = "workout" + String(i);
+                if(!document.cookie.split(';').some( (item) => item.trim().startsWith(cookie_name + "=")))
+                {
+                    console.log("Creating cookie with name: " + cookie_name);
+                    
+                    let cookie_value = "";
+                    for(let k = 0; k < ExerciseIndexList.length; k++)
+                    {
+                        cookie_value += ExerciseIndexList[k]+",";
+                    }
+                    cookie_value = cookie_value.substr(0, cookie_value.length - 1);
+
+                    let cookie = cookie_name+"="+cookie_value + "; SameSite=Lax";
+                    document.cookie = cookie;
+                    return;
+                }
+                i = i + 1;
+            }
+        }
 </script>
 
 <div class="row">
     <div class="col scrollSpecial">
-        <p class="btn-outline-secondary disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="For each exercise you wish to add to your workout, you can filter out muscle group, difficulty, required equipment and exercise type.">Add filters:</p>
+        <p class="btn-outline-secondary disabled" data-bs-toggle="tooltip" data-bs-placement="top" title="For each exercise you wish to add to your workout, you can filter out muscle group, difficulty, required equipment and exercise type.">Your results:</p>
         <ul class="list-group list-group-flush">
 
             {#each ExerciseList as exercise, i}
                 <li class="list-group-item bg-transparent liSpecial">
-                    <ExerciseItem ExerciseEntry={exercise} id={i} AppObjects={AppObjects} template={TemplateList[i]}/>
+                    <ExerciseItem ExerciseEntry={exercise} ExerciseIndex={ExerciseIndexList[i]} id={i} AppObjects={AppObjects} template={TemplateList[i]}/>
                 </li>
             {/each}
+            <li class ="list-group-item bg-transparent liSpecial">
+                <button class="btn btn-outline-secondary col-1 text-primary" on:click={SaveToCookie}>Save</button>
+            </li>
         </ul>
     </div>
 </div>
 
+
+
+<style>
+    .liSpecial{
+        border:0 !important;
+    }
+    .scrollSpecial{
+        overflow-y: auto;
+        max-height: 75vh;
+    }
+</style>

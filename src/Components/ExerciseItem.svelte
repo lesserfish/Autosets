@@ -3,6 +3,7 @@ import { onMount } from "svelte";
 
 export let AppObjects;
 export let ExerciseEntry;
+export let ExerciseIndex;
 export let id;
 export let template;
 
@@ -10,6 +11,7 @@ export let template;
 function ReplaceEntry()
 {
             let AcceptableWorkouts = [];
+            let AcceptableWorkoutsIndex = [];
             
             for(let j = 1; j <= Object.values(AppObjects.workoutObject).length; j++)
             {
@@ -33,12 +35,14 @@ function ReplaceEntry()
                     continue;
                 } 
                 AcceptableWorkouts.push(workout);
+                AcceptableWorkoutsIndex.push(j);
             }
             if(AcceptableWorkouts.length > 0)
             {
                 let idx = Math.floor(Math.random()* AcceptableWorkouts.length);
                 let exercise = AcceptableWorkouts[idx];
                 ExerciseEntry = exercise;
+                ExerciseIndex = AcceptableWorkoutsIndex[idx];
             }
 }
 </script>

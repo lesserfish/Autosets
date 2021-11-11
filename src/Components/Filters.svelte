@@ -20,9 +20,6 @@ import { onMount } from "svelte";
                     ChosenMuscles.push(check_id_array[i]);
                 }
             }
-        }
-        if(document.getElementById(all_id).checked)
-        {
             if(all_id == "allEquipment"){
                 ChosenEquipment = [];
                 for(let i = 0; i < check_id_array.length; i++)
@@ -30,9 +27,6 @@ import { onMount } from "svelte";
                     ChosenEquipment.push(check_id_array[i]);
                 }
             }
-        }
-        if(document.getElementById(all_id).checked)
-        {
             if(all_id == "allDifficulty"){
                 ChosenDifficulty = [];
                 for(let i = 0; i < check_id_array.length; i++)
@@ -40,15 +34,27 @@ import { onMount } from "svelte";
                     ChosenDifficulty.push(check_id_array[i]);
                 }
             }
-        }
-        if(document.getElementById(all_id).checked)
-        {
             if(all_id == "allTypes"){
                 ChosenTypes = [];
                 for(let i = 0; i < check_id_array.length; i++)
                 {
                     ChosenTypes.push(check_id_array[i]);
                 }
+            }
+        }
+        else{
+
+            if(all_id == "allMuscles"){
+                ChosenMuscles = [];
+            }
+            if(all_id == "allEquipment"){
+                ChosenEquipment = [];
+            }
+            if(all_id == "allDifficulty"){
+                ChosenDifficulty = [];
+            }
+            if(all_id == "allTypes"){
+                ChosenTypes = [];
             }
         }
     }
