@@ -11,28 +11,81 @@
 
   let TemplateList = [];
 
+  let Func = () => {};
+
   onMount(() => {
-    console.log(document.cookie);
-    let i = 0;
-    while (true) {
-      let cookie_name = "workout" + String(i);
-      if (
-        !document.cookie
-          .split(";")
-          .some((item) => item.trim().startsWith(cookie_name + "="))
-      ) {
-        saved_cookies = saved_cookies;
-        return;
+    let cookie_db = "saved_workouts";
+    let cookie_db_value = "";
+
+    if (
+      !document.cookie // If db does not exist
+        .split(";")
+        .some((item) => item.trim().startsWith(cookie_db + "="))
+    ) {
+      return;
+    } else {
+      // Get db
+      cookie_db_value = document.cookie
+        .split("; ")
+        .find((item) => item.startsWith(cookie_db + "="))
+        .split("=")[1];
+      let cookie_db_array = cookie_db_value.split(",");
+
+      for (let id = 0; id < cookie_db_array.length; id++) {
+        saved_cookies.push(cookie_db_array[id]);
       }
-      saved_cookies.push(cookie_name);
-      i = i + 1;
     }
+    saved_cookies = saved_cookies;
   });
+
+  function DeleteExercise(i) {
+    let cookie_db = "saved_workouts";
+    let cookie_db_value = "";
+
+    let new_cookie_db_value;
+
+    saved_cookies = [];
+
+    if (
+      !document.cookie // If db does not exist
+        .split(";")
+        .some((item) => item.trim().startsWith(cookie_db + "="))
+    ) {
+      return;
+    } else {
+      // Get db
+      cookie_db_value = document.cookie
+        .split("; ")
+        .find((item) => item.startsWith(cookie_db + "="))
+        .split("=")[1];
+      let cookie_db_array = cookie_db_value.split(",");
+
+      new_cookie_db_value = "";
+      for (let id = 0; id < cookie_db_array.length; id++) {
+        if (cookie_db_array[id] != i) {
+          saved_cookies.push(cookie_db_array[id]);
+          new_cookie_db_value = new_cookie_db_value + cookie_db_array[id] + ",";
+        }
+      }
+
+      new_cookie_db_value =
+        new_cookie_db_value.length > 0
+          ? new_cookie_db_value.substr(0, new_cookie_db_value.length - 1) +
+            "; SameSite=Lax;"
+          : "; Max-Age=0; SameSite=Lax;";
+
+      let new_cookie = cookie_db + "=" + new_cookie_db_value;
+      document.cookie = new_cookie;
+    }
+
+    document.cookie = "workout_" + i + "=; Max-Age=0; SameSite=Lax;";
+    saved_cookies = saved_cookies;
+  }
   function LoadExerciseList(i) {
     ExerciseIndexList = [];
     ExerciseList = [];
 
-    let cookie_name = "workout" + String(i);
+    let cookie_name = "workout_" + i;
     const cookie_value = document.cookie
       .split("; ")
       .find((row) => row.startsWith(cookie_name + "="))
@@ -63,10 +116,23 @@
             <button
               class="btn btn-outline-secondary col text-secondary"
               on:click={() => {
-                LoadExerciseList(i);
+                LoadExerciseList(cookie);
                 cookie_mode = cookie_mode == i ? -1 : i;
               }}>Save {i}</button
             >
+            <button
+              class="btn bi bi-trash btn-outline-danger"
+              style="font-size: 100%"
+              on:click={() => {
+                Func = () => {
+                  DeleteExercise(cookie);
+                };
+                let myModal = new bootstrap.Modal(
+                  document.getElementById("deleteModal")
+                );
+                myModal.toggle();
+              }}
+            />
           </li>
         {/each}
       </ul>
@@ -100,6 +166,33 @@
       </div>
     </div>
   {/if}
+</div>
+
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Are you sure you want to delete this?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          on:click={Func}>Yes</button
+        >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          >No</button
+        >
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>

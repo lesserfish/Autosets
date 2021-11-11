@@ -68,6 +68,7 @@
     ExerciseList = [];
     FillExerciseList();
   });
+
   function SaveToCookie() {
     if (ExerciseIndexList.length == 0) {
       save_message = "There is nothing to save.";
@@ -78,32 +79,52 @@
       return;
     }
     let i = 0;
-    while (true) {
-      let cookie_name = "workout" + String(i);
-      if (
-        !document.cookie
-          .split(";")
-          .some((item) => item.trim().startsWith(cookie_name + "="))
-      ) {
-        console.log("Creating cookie with name: " + cookie_name);
+    let cookie_db = "saved_workouts";
+    let cookie_db_value = "";
+    let cookie_name = "";
+    let cookie_value = "";
 
-        let cookie_value = "";
-        for (let k = 0; k < ExerciseIndexList.length; k++) {
-          cookie_value += ExerciseIndexList[k] + ",";
+    if (
+      !document.cookie // If db does not exist
+        .split(";")
+        .some((item) => item.trim().startsWith(cookie_db + "="))
+    ) {
+      // Create db
+      document.cookie = cookie_db + "=0; SameSite=Lax"; // saved_workouts=workout_0; SameSite=Lax;
+      cookie_name = "workout_0";
+    } else {
+      // Get db
+      cookie_db_value = document.cookie
+        .split("; ")
+        .find((item) => item.startsWith(cookie_db + "="))
+        .split("=")[1];
+
+      let cookie_db_array = cookie_db_value.split(",");
+      let max = 0;
+      try {
+        for (let id = 0; id < cookie_db_array.length; id++) {
+          let v = parseInt(cookie_db_array[id]);
+          max = max > v ? max : v + 1;
         }
-        cookie_value = cookie_value.substr(0, cookie_value.length - 1);
-
-        let cookie = cookie_name + "=" + cookie_value + "; SameSite=Lax";
-        document.cookie = cookie;
-        save_message = "Workout was saved to cookies.";
-        let myModal = new bootstrap.Modal(
-          document.getElementById("exampleModal")
-        );
-        myModal.toggle();
-        return;
+      } catch (e) {
+        throw e;
       }
-      i = i + 1;
+      cookie_db_value = cookie_db_value + "," + String(max);
+      let new_cookie_db = cookie_db + "=" + cookie_db_value + "; SameSite=Lax";
+      document.cookie = new_cookie_db;
+      cookie_name = "workout_" + String(max);
     }
+    for (let k = 0; k < ExerciseIndexList.length; k++) {
+      cookie_value += ExerciseIndexList[k] + ",";
+    }
+    cookie_value = cookie_value.substr(0, cookie_value.length - 1);
+
+    let cookie = cookie_name + "=" + cookie_value + "; SameSite=Lax";
+
+    document.cookie = cookie;
+    save_message = "Workout was saved to cookies";
+    let myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
+    myModal.toggle();
   }
 </script>
 
