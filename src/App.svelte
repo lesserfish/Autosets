@@ -99,11 +99,11 @@
     <div class="row">
       <nav class="navbar sticky-top navbar-light navbar-expand">
         <div class="container NavbarContainer ">
-          <div class="navbar-brand">
+          <a class="navbar-brand" href="/" on:click={() => {mode = 0}}>
             <h1 class="display-6 text-dark">
               AUTO <span class="text-secondary">SETS</span>
             </h1>
-          </div>
+          </a>
         </div>
         <div class="col">
           <button
