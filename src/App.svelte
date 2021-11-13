@@ -99,7 +99,13 @@
     <div class="row">
       <nav class="navbar sticky-top navbar-light navbar-expand">
         <div class="container NavbarContainer ">
-          <a class="navbar-brand" href="/" on:click={() => {mode = 0}}>
+          <a
+            class="navbar-brand"
+            href="/"
+            on:click={() => {
+              mode = 0;
+            }}
+          >
             <h1 class="display-6 text-dark">
               AUTO <span class="text-secondary">SETS</span>
             </h1>
@@ -199,10 +205,9 @@
         </div>
       {/if}
     </div>
-
     <div class="specialFooter">
       <nav class="navbar fixed-bottom navbar-light">
-        <div class="col-12">
+        <div class="navbar-brand col-12">
           <div class="navbar-text text-center">
             {#if mode == 0}
               <div
@@ -212,7 +217,13 @@
                   delay: animationDelay,
                 }}
               >
-                <h5>Welcome!</h5>
+                <a href="https://www.github.com/lesserfish" target="_blank">
+                  <img
+                    src="images/GitHub-Mark/PNG/GitHub-Mark-32px.png"
+                    alt="Github logo"
+                    style="filter:opacity(30%);"
+                  />
+                </a>
               </div>
             {:else if mode == 1}
               <div
@@ -222,7 +233,7 @@
                   delay: animationDelay,
                 }}
               >
-                <h5>Select your workout!!</h5>
+                <h5>Select the kind of workout you want to generate!</h5>
               </div>
             {:else if mode == 2}
               <div
@@ -277,7 +288,7 @@
     opacity: 16%;
   }
   .imageA {
-    left:19%;
+    left: 19%;
     scale: 150%;
     margin-top: 12em;
   }
@@ -294,6 +305,6 @@
     margin-bottom: 15%;
   }
   .specialFooter {
-    pointer-events: none;
+    /*pointer-events: none;*/
   }
 </style>
