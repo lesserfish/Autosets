@@ -39,7 +39,7 @@
     <div class="BackgroundImage imageA">
       <img
         class=""
-        src="/images/human_a.png"
+        src="./images/human_a.png"
         alt=""
         in:fly={{
           x: -1 * animationSpeed,
@@ -53,7 +53,7 @@
     <div class="BackgroundImage imageB">
       <img
         class="img-fluid float-start"
-        src="/images/human_b.webp"
+        src="./images/human_b.webp"
         alt=""
         in:fly={{
           x: -1 * animationSpeed,
@@ -67,7 +67,7 @@
     <div class="BackgroundImage imageC">
       <img
         class="img-fluid"
-        src="/images/human_c.webp"
+        src="./images/human_c.webp"
         alt=""
         in:fly={{
           x: animationSpeed,
@@ -81,7 +81,7 @@
     <div class="BackgroundImage imageD">
       <img
         class="img-fluid"
-        src="/images/human_h.webp"
+        src="./images/human_h.webp"
         alt=""
         in:fly={{
           x: -1 * animationSpeed,
