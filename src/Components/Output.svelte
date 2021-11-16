@@ -90,7 +90,7 @@
         .some((item) => item.trim().startsWith(cookie_db + "="))
     ) {
       // Create db
-      document.cookie = cookie_db + "=0; SameSite=Lax"; // saved_workouts=workout_0; SameSite=Lax;
+      document.cookie = cookie_db + "=0; SameSite=Lax; expires=Fri, 31 Dec 9999 23:59:59 GMT;"; // saved_workouts=workout_0; SameSite=Lax;
       cookie_name = "workout_0";
     } else {
       // Get db
@@ -110,7 +110,7 @@
         throw e;
       }
       cookie_db_value = cookie_db_value + "," + String(max);
-      let new_cookie_db = cookie_db + "=" + cookie_db_value + "; SameSite=Lax";
+      let new_cookie_db = cookie_db + "=" + cookie_db_value + "; SameSite=Lax;  expires=Fri, 31 Dec 9999 23:59:59 GMT;";
       document.cookie = new_cookie_db;
       cookie_name = "workout_" + String(max);
     }
@@ -119,7 +119,7 @@
     }
     cookie_value = cookie_value.substr(0, cookie_value.length - 1);
 
-    let cookie = cookie_name + "=" + cookie_value + "; SameSite=Lax";
+    let cookie = cookie_name + "=" + cookie_value + "; SameSite=Lax;  expires=Fri, 31 Dec 9999 23:59:59 GMT;";
 
     document.cookie = cookie;
     save_message = "Workout was saved to cookies";

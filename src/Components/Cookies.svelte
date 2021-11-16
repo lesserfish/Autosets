@@ -71,7 +71,7 @@
       new_cookie_db_value =
         new_cookie_db_value.length > 0
           ? new_cookie_db_value.substr(0, new_cookie_db_value.length - 1) +
-            "; SameSite=Lax;"
+            "; SameSite=Lax;  expires=Fri, 31 Dec 9999 23:59:59 GMT;"
           : "; Max-Age=0; SameSite=Lax;";
 
       let new_cookie = cookie_db + "=" + new_cookie_db_value;
