@@ -1,1 +1,1 @@
-Visit me at: lesserfish.dev/auto
+Visit me at: http//www.lesserfish.dev/auto
